@@ -1,0 +1,9 @@
+# Created by .ignore support plugin (hsz.mobi)
+### Ansible template
+*.retry
+.idea
+./*.iml
+./*.log
+./*.bkp
+./.git
+
