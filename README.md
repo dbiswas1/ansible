@@ -71,9 +71,63 @@ decrypting the password used in property file
 1) To make sure we communicate to AWS Secrets manger we should be using IAM roles 
 and not the AWS access key and secrets for better security
 
-Following is how we create a role and assign the role to instance
+##### Create a IAM Role and policy and attach the instances to have access for aws secrets manager
+
+Ref: https://docs.aws.amazon.com/AWSEC2/latest/UserGuide/iam-roles-for-amazon-ec2.html
+
+##### setup aws secret manager
+create a file as secret.json with following content
+
 ```
-``` 
+{
+  "ansible_dev_vault_passwd": "test123"
+}
+```
+
+Run the following commands after we have assigned the IAM roles to the instance 
+
+```
+aws secretsmanager create-secret --name ansible/DevVaultPassword \
+--description "Test Secrets" \
+--secret-string file://secret.json
+
+{
+    "VersionId": "74d43e92-1302-4ae3-821f-c422c6095495",
+    "Name": "ansible/DevVaultPassword",
+    "ARN": "arn:aws:secretsmanager:******:********:secret:ansible/DevVaultPassword-nX1LA5"
+}
+```
 
 ### Lets Run the playbook to create a application properties file
 
+```
+ansible-playbook secrets.yml --vault-password-file ./retrive-secrets.sh
+
+PLAY [127.0.0.1] ***************************************************************************************************************************************************************************************************************************
+
+TASK [Gathering Facts] *********************************************************************************************************************************************************************************************************************
+ok: [127.0.0.1]
+
+TASK [Create a directory for property file] ************************************************************************************************************************************************************************************************
+changed: [127.0.0.1]
+
+TASK [Basic Templating] ********************************************************************************************************************************************************************************************************************
+changed: [127.0.0.1]
+
+PLAY RECAP *********************************************************************************************************************************************************************************************************************************
+127.0.0.1                  : ok=3    changed=2    unreachable=0    failed=0
+
+```
+
+### View the Application Properties file
+
+Output of the file is the decrypted field at rest in the target host
+
+```
+cat /tmp/secrets_management/app.properties                                                                                                                                            ip-172-31-44-201: Tue Sep 10 06:20:41 2019
+
+port = 7000
+Host  = db_host
+username = appdb
+password = Test123456!2
+```
