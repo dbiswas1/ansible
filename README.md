@@ -131,3 +131,8 @@ Host  = db_host
 username = appdb
 password = Test123456!2
 ```
+
+### Advantages
+one of the main advantages of the above exercise is
+1) You can still place all the playbook in the git for auditing since all the sensitive data is encrypted
+2) No AWS access key and Secrets are maintained in the host so. it is more secured that way
