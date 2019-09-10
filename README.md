@@ -75,7 +75,7 @@ and not the AWS access key and secrets for better security
 
 Ref: https://docs.aws.amazon.com/AWSEC2/latest/UserGuide/iam-roles-for-amazon-ec2.html
 
-### setup aws secret manager
+### Setup AWS Secret Manager
 1) create a file as secret.json with following content
 
 ```
