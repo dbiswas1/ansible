@@ -71,12 +71,12 @@ decrypting the password used in property file
 1) To make sure we communicate to AWS Secrets manger we should be using IAM roles 
 and not the AWS access key and secrets for better security
 
-##### Create a IAM Role and policy and attach the instances to have access for aws secrets manager
+### Create a IAM Role and policy and attach the instances to have access for aws secrets manager
 
 Ref: https://docs.aws.amazon.com/AWSEC2/latest/UserGuide/iam-roles-for-amazon-ec2.html
 
-##### setup aws secret manager
-create a file as secret.json with following content
+### setup aws secret manager
+1) create a file as secret.json with following content
 
 ```
 {
@@ -84,7 +84,7 @@ create a file as secret.json with following content
 }
 ```
 
-Run the following commands after we have assigned the IAM roles to the instance 
+2) Run the following commands after we have assigned the IAM roles to the instance 
 
 ```
 aws secretsmanager create-secret --name ansible/DevVaultPassword \
