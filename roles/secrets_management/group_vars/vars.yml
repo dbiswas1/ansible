@@ -1,4 +1,4 @@
-secerets_management:
+secrets_management:
   db_passwd: !vault |
           $ANSIBLE_VAULT;1.1;AES256
           34363133323661303339643130643037386134616239613063323436336263636662383533633337
