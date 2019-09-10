@@ -12,7 +12,7 @@ and store the ansible vault password in AWS secret manager.
   
  ## Steps
  
- # Lets encrypt a string using ansible vault
+ ### Lets encrypt a string using ansible vault
  use command  **ansible-vault encrypt_string** and copy the output
 ```
    ansible-vault encrypt_string --vault-password-file ~/.password 'Test123456!2'
@@ -27,7 +27,7 @@ and store the ansible vault password in AWS secret manager.
    
 ```
 
-# Lets create a folder structure as mentioned below or clone the [git-repo](https://github.com/dbiswas1/ansible.git )
+### Lets create a folder structure as mentioned below or clone the [git-repo](https://github.com/dbiswas1/ansible.git )
 
 ```
 roles
@@ -40,7 +40,7 @@ roles
             └── app.properties.j2
 ```
 
-# Create a Jinja template with above encrypted value
+### Create a Jinja template with above encrypted value
 
 Already this is present in the template folder folder with following content
 
@@ -63,4 +63,17 @@ secrets_management:
           3866613533643236390a646462613237346235316461346366353931336161363531373532633832
           6133
 ```
+
+### Create a script for passing vault password
+Following script will fetch the password from AWS secrets manager and pass to Ansible vault for
+decrypting the password used in property file
+
+1) To make sure we communicate to AWS Secrets manger we should be using IAM roles 
+and not the AWS access key and secrets for better security
+
+Following is how we create a role and assign the role to instance
+```
+``` 
+
+### Lets Run the playbook to create a application properties file
 
