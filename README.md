@@ -10,7 +10,10 @@ and store the ansible vault password in AWS secret manager.
   * Retrieve the key from AWS secrets manger
   * Build the property file and place the file (with decrypted value)in the target host
   
+  
  ## Steps
+ 
+ ![alt text](https://raw.githubusercontent.com/dbiswas1/ansible/master/pics/secrets_management.jpg)
  
  ### Lets encrypt a string using ansible vault
  use command  **ansible-vault encrypt_string** and copy the output
